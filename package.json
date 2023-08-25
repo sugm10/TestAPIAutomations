@@ -1,0 +1,11 @@
+{
+  "name": "WeatherBit-Newman-Tests",
+  "version": "1.0.0",
+  "description": "NPM package install Postman/Newman so we can run tests from the CI server",
+  "author": "Ganesh Ranganathan",
+  "dependencies": {
+    "newman": "^4.4.0",
+    "newman-reporter-html": "^6.4.1"
+
+  }
+}

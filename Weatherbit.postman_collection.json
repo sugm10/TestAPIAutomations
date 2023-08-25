@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "fd83a5b2-a571-4c21-a0f7-7a34bc3373a4",
+		"name": "Weatherbit",
+		"description": "Collection to test Weatherbit APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PostmanEcho",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90760aaa-34d7-4863-98e2-d90cc66f729d",
+						"exec": [
+							"var req = pm.iterationData.get(\"Scenario\");",
+							"console.log (req);",
+							"",
+							"if (req === \"latlon\")",
+							"{",
+							"  postman.setNextRequest(\"GetWeatherLatLon\");",
+							"  }",
+							"else ",
+							"{",
+							"  postman.setNextRequest(\"GetWeatherPostcode\");",
+							"    ",
+							"}",
+							"  ",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "87656937-c184-402a-9405-494fa3b01b1c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "foo1",
+							"value": "bar1"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWeatherLatLon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90760aaa-34d7-4863-98e2-d90cc66f729d",
+						"exec": [
+							"var rc = pm.iterationData.get(\"Returncode\");",
+							"",
+							"pm.test(\"Return Code Test\", function () {",
+							"  pm.response.to.have.status(rc);",
+							"    ",
+							"});",
+							"",
+							"",
+							"",
+							"  postman.setNextRequest(\"null\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "87656937-c184-402a-9405-494fa3b01b1c",
+						"exec": [
+							"var req = pm.iterationData.get(\"Scenario\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.weatherbit.io/v1.0/current?lat={{lat}}&lon={{lon}}&key={{apikey}}",
+					"protocol": "http",
+					"host": [
+						"api",
+						"weatherbit",
+						"io"
+					],
+					"path": [
+						"v1.0",
+						"current"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "{{lat}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}"
+						},
+						{
+							"key": "key",
+							"value": "{{apikey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWeatherPostcode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90760aaa-34d7-4863-98e2-d90cc66f729d",
+						"exec": [
+							"var rc = pm.iterationData.get(\"Returncode\");",
+							"",
+							"pm.test(\"Return Code Test\", function () {",
+							"  pm.response.to.have.status(rc);",
+							"    ",
+							"});",
+							"",
+							"",
+							"  postman.setNextRequest(\"null\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "87656937-c184-402a-9405-494fa3b01b1c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.weatherbit.io/v1.0/current/postal?postal_code={{postalcode}}&key={{apikey}}",
+					"protocol": "http",
+					"host": [
+						"api",
+						"weatherbit",
+						"io"
+					],
+					"path": [
+						"v1.0",
+						"current",
+						"postal"
+					],
+					"query": [
+						{
+							"key": "postal_code",
+							"value": "{{postalcode}}"
+						},
+						{
+							"key": "key",
+							"value": "{{apikey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "39dd2d30-477d-4922-b2e7-107f99034ef2",
+				"type": "text/javascript",
+				"exec": [
+					"var req = pm.iterationData.get(\"Scenario\");",
+					"console.log (req);",
+					"",
+					"if (req == \"latlon\")",
+					"{",
+					"  postman.setNextRequest(\"GetWeatherLatLon\");",
+					"  }",
+					"else ",
+					"{",
+					"  postman.setNextRequest(\"GetWeatherPostcode\");",
+					"    ",
+					"}",
+					"  ",
+					"    "
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c5c77784-b420-4a59-b47d-01590ff097bb",
+				"type": "text/javascript",
+				"exec": [
+					"var req = pm.iterationData.get(\"Scenario\");",
+					"console.log (req);",
+					"",
+					"if (req == \"latlon\")",
+					"  postman.setNextRequest(\"GetWeatherLatLon\");",
+					"else ",
+					"  postman.setNextRequest(\"GetWeatherPostcode\");"
+				]
+			}
+		}
+	]
+}

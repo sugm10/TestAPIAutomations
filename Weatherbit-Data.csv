@@ -1,0 +1,19 @@
+Scenario,Test Case,lat,lon,apikey,postalcode,Returncode,Expected Result
+latlon,Positive scenario of equivalence partitioning - 2 digit input,-80,80.8,dd0dd512a807406b8444346f45bb6f4f,,200,Weather displayed
+latlon,Positive scenario of equivalence partitioning - 3 digit input,179,89.9,dd0dd512a807406b8444346f45bb6f4f,,200,Weather displayed
+latlon,Positive boundary values,180,90,dd0dd512a807406b8444346f45bb6f4f,,200,Weather displayed
+latlon,Negative values in boundary value ,-180,-90,dd0dd512a807406b8444346f45bb6f4f,,200,Weather displayed
+latlon,Values outside the boundary,-181,-91,dd0dd512a807406b8444346f45bb6f4f,,200,Error message
+latlon,Blank Logitude,75.22, ,dd0dd512a807406b8444346f45bb6f4f,,200,Error message
+latlon,Blank Lattitide, ,-40.67,dd0dd512a807406b8444346f45bb6f4f,,200,Error message
+latlon,Invalid Key,-120,35,dd0dd512a807406b8444346f45bb6f4f,,200,Error message
+latlon,Blank Key,140,-75,dd0dd512a807406b8444346f45bb6f4f,,200,Error message
+latlon,2 decimal places,10.25,77.45,dd0dd512a807406b8444346f45bb6f4f,,200,Weather displayed
+latlon,4 Decimal places,45.1234,55.1234,dd0dd512a807406b8444346f45bb6f4f,,200,Rounds upto 2 decimal places
+post,Valid post code - within USA,,,dd0dd512a807406b8444346f45bb6f4f,35959,200,weather displayed
+post,Invalid post code - Outside USA,,,dd0dd512a807406b8444346f45bb6f4f,19999,200,Error message
+post,Invalid key,,,dd0dd512a807406b8444346f45bb6f4f,37650,200,Error message
+post,Boundary - Invalid length,,,dd0dd512a807406b8444346f45bb6f4f,2760,200,Error message
+post,Blank postcode,,,dd0dd512a807406b8444346f45bb6f4f,,200,Error message
+post,Alphanumeric values in postcode,,,dd0dd512a807406b8444346f45bb6f4f,1000A,200,Error message
+post,Special characters in postcode,,,dd0dd512a807406b8444346f45bb6f4f,900&0,200,Error message
